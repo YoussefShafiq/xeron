@@ -1,0 +1,208 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme {
+  /* ── Typography — IBM Plex Sans everywhere; use utilities below for sizes ── */
+  --font-display: var(--font-ibm-plex-sans), ui-sans-serif, system-ui, sans-serif;
+  --color-content-primary: #ededed;
+  --color-content-secondary: rgb(237 237 237 / 0.78);
+  --color-content-tertiary: rgb(237 237 237 / 0.5);
+  --color-content-muted: #6f6e7b;
+
+  /* ── Purple Scale ── */
+  --color-purple-1000: #100022;
+  --color-purple-975: #1A0036;
+  --color-purple-950: #17002f;
+  --color-purple-900: #5100b0;
+  --color-purple-800: #6100e4;
+  --color-purple-700: #6d00ff;
+  --color-purple-600: #6d00ff;
+  --color-purple-500: #7213ff;
+  --color-purple-400: #793eff;
+  --color-purple-300: #8f74ff;
+  --color-purple-200: #b6a8ff;
+  --color-purple-100: #d5cfff;
+  --color-purple-50: #e7e4ff;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-ibm-plex-sans);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #080210;
+    --foreground: #ededed;
+  }
+}
+
+/*
+  Use clip (not hidden) for horizontal overflow so position:sticky still works
+  relative to the viewport; overflow-x:hidden on an ancestor breaks sticky.
+*/
+html {
+  overflow-x: clip;
+}
+
+body {
+  background-color: var(--background);
+  background-image: url("/BG.png");
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
+  background-attachment: fixed;
+  overflow-x: clip;
+  color: var(--foreground);
+  font-family: var(--font-ibm-plex-sans), sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/*
+  Semantic type scale — use these instead of arbitrary text-[…px] across the site.
+  Hero > page title > section title > heading > body > caption.
+*/
+@layer components {
+  .type-hero {
+    @apply font-display text-3xl font-extrabold tracking-tight text-content-primary md:text-5xl lg:text-6xl;
+  }
+
+  .type-page-title {
+    @apply font-display text-3xl font-extrabold tracking-tight text-content-primary md:text-4xl lg:text-5xl;
+  }
+
+  .type-section-title {
+    @apply font-display text-3xl font-extrabold tracking-tight text-content-primary md:text-5xl lg:text-6xl;
+  }
+
+  .type-section-subtitle {
+    @apply text-sm leading-relaxed text-content-muted md:text-lg lg:text-xl;
+  }
+
+  .type-process-banner {
+    @apply font-display text-3xl font-extrabold text-content-primary md:text-4xl lg:text-5xl;
+  }
+
+  .type-card-title {
+    @apply font-display text-xl font-bold text-content-primary md:text-2xl;
+  }
+
+  .type-heading {
+    @apply font-display text-lg font-bold text-content-primary md:text-2xl lg:text-3xl;
+  }
+
+  .type-subheading {
+    @apply font-display text-xl font-bold text-content-primary;
+  }
+
+  .type-h3 {
+    @apply font-display text-lg font-bold text-content-primary md:text-xl;
+  }
+
+  .type-body {
+    @apply text-sm leading-relaxed text-content-secondary md:text-base;
+  }
+
+  .type-body-muted {
+    @apply text-sm leading-[1.75] text-content-muted md:text-base lg:text-lg;
+  }
+
+  .type-lead {
+    @apply text-sm leading-snug text-content-muted md:text-2xl;
+  }
+
+  .type-prose {
+    @apply text-sm leading-[1.75] text-content-muted md:text-base lg:text-lg;
+  }
+
+  .type-ui {
+    @apply text-sm text-content-primary md:text-base;
+  }
+
+  .type-label {
+    @apply text-sm font-bold text-content-primary md:text-base;
+  }
+
+  .type-caption {
+    @apply text-xs text-content-secondary;
+  }
+
+  .type-nav {
+    @apply text-base font-medium;
+  }
+
+  .type-footer-link {
+    @apply text-xs text-purple-50/50 md:text-sm lg:text-base;
+  }
+
+  .type-footer-legal {
+    @apply text-xs text-purple-50/60 md:text-sm;
+  }
+
+  .type-sidebar-label {
+    @apply text-2xl font-semibold tracking-widest text-content-tertiary uppercase;
+  }
+
+  .type-badge {
+    @apply text-xs font-medium md:text-xs;
+  }
+
+  .type-emphasis-title {
+    @apply font-display text-2xl font-bold leading-tight text-white md:text-3xl lg:text-4xl;
+  }
+
+  .type-link-inline {
+    @apply text-sm font-bold text-purple-50/50 transition-colors duration-200 hover:text-purple-50/80 md:text-base;
+  }
+
+  .type-contact-heading {
+    @apply text-base font-bold text-content-primary md:text-xl;
+  }
+
+  .type-form-label {
+    @apply text-sm font-bold text-purple-50 md:text-base;
+  }
+
+  .type-card-overlay-title {
+    @apply font-display text-xs font-bold leading-snug text-white md:text-sm;
+  }
+
+  .type-card-overlay-desc {
+    @apply text-xs leading-snug text-white/50 md:text-sm;
+  }
+
+  .type-process-step-thumb {
+    @apply text-center text-xs font-bold leading-tight line-clamp-2 sm:text-sm md:text-2xl;
+  }
+}
+
+/*
+  Gradient border shell — outer wrapper with padding as the “border”.
+*/
+.gradient-border-shell {
+  padding: 2px;
+  /* Matches @theme purple-200 / purple-50 / purple-500 */
+  background: linear-gradient(to bottom right, #b6a8ff, #e7e4ff, #7213ff);
+}
+
+.gradient-border-shell--bl {
+  background: linear-gradient(to bottom left, #b6a8ff, #e7e4ff, #7213ff);
+}
+
+.gradient-border-shell--glow {
+  box-shadow: 0 0 24px rgba(109, 0, 255, 0.35);
+}
+
+.gradient-border-shell--thin {
+  padding: 1px;
+}
+
+* {
+  scroll-behavior: smooth;
+}
