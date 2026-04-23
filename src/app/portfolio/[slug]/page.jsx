@@ -34,6 +34,7 @@ export default async function PortfolioDetailPage({ params }) {
                         subtitle={item.subtitle || item.description}
                         tags={Array.isArray(item.tags) ? item.tags : []}
                         centered
+                        href={item.demoUrl}
                     />
                 </div>
 
@@ -93,15 +94,14 @@ export default async function PortfolioDetailPage({ params }) {
                 <div>
                     <div className="text-center mb-12">
                         <h2 className="type-process-banner">
-                            All Process
+                            Gallery
                         </h2>
                     </div>
 
                     <div className="grid grid-cols-3 gap-2 sm:gap-4 md:gap-6 mb-20">
                         {processSteps.map((step, i) => (
-                            <Link
+                            <div
                                 key={`${step.slug}-${i}`}
-                                href={`/portfolio/${item.slug}/${step.slug}`}
                                 className="group"
                             >
                                 <div className="relative gradient-border-shell gradient-border-shell--glow rounded-[20px] transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
@@ -125,7 +125,7 @@ export default async function PortfolioDetailPage({ params }) {
 
                                     </div>
                                 </div>
-                            </Link>
+                            </div>
                         ))}
                     </div>
                 </div>

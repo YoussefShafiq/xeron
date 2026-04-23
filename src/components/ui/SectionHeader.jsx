@@ -1,10 +1,12 @@
 import Badge from '@/components/ui/Badge';
+import Button from '@/components/ui/Button';
 
 export default function SectionHeader({
     title,
     subtitle,
     tags,
-    centered = false
+    centered = false,
+    href = null
 }) {
     const tagList = Array.isArray(tags) ? tags : [];
     return (
@@ -30,6 +32,14 @@ export default function SectionHeader({
                     {tagList.map((tag) => (
                         <Badge key={tag}>{tag}</Badge>
                     ))}
+                </div>
+            )}
+
+            {href && (
+                <div className="mt-6 text-center">
+                    <Button href={href} variant="primary">
+                        View demo →
+                    </Button>
                 </div>
             )}
         </div>
