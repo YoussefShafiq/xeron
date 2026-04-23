@@ -1,11 +1,10 @@
 import ServiceCard from './ServiceCard';
-import { services } from '@/data/services';
 
 /**
  * ServicesList — renders all services in a responsive grid.
  * Pass `preview={true}` to render only the first 3 (for homepage).
  */
-export default function ServicesList({ preview = false }) {
+export default function ServicesList({ services = [], preview = false }) {
     const items = preview ? services.slice(0, 3) : services;
 
     return (

@@ -21,4 +21,12 @@ export const NAV_LINKS = [
     // { label: 'Jobs', href: '/jobs' },
 ];
 
-export const BASE_URL = 'http://localhost:3300';
+/**
+ * Backend base URL.
+ * On Windows, `localhost` can resolve to IPv6 (`::1`) and cause ECONNREFUSED if
+ * your backend only listens on IPv4. `127.0.0.1` is more reliable.
+ */
+export const BASE_URL =
+    process.env.NEXT_PUBLIC_API_BASE_URL ||
+    process.env.API_BASE_URL ||
+    'https://xeronapi.xeron.tech';

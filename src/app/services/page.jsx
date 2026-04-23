@@ -3,7 +3,6 @@ import SectionHeader from '@/components/ui/SectionHeader';
 import ServiceCard from '@/components/services/ServiceCard';
 import ServiceCardSkeleton from '@/components/skeletons/ServiceCardSkeleton';
 import { useState, useEffect } from 'react';
-import { BASE_URL } from '@/lib/constants';
 import { normalizeServiceList } from '@/lib/serviceApi';
 
 const SKELETON_COUNT = 6;
@@ -15,7 +14,7 @@ export default function ServicesPage() {
     useEffect(() => {
         let cancelled = false;
         setLoading(true);
-        fetch(`${BASE_URL}/service`)
+        fetch(`/api/service`)
             .then((response) => {
                 if (!response.ok) throw new Error(`HTTP ${response.status}`);
                 return response.json();

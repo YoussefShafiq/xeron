@@ -12,6 +12,23 @@ export function normalizeServiceList(payload) {
 }
 
 /**
+ * GET /service → array (supports common response wrappers).
+ */
+import { BASE_URL } from '@/lib/constants';
+
+export async function fetchServiceList(init) {
+    try {
+        const res = await fetch(`${BASE_URL}/service`, init);
+        if (!res.ok) return [];
+        const json = await res.json();
+        return normalizeServiceList(json);
+    } catch (e) {
+        console.error('fetchServiceList:', e);
+        return [];
+    }
+}
+
+/**
  * Normalizes GET /service/:slug — direct document or { data } / { service } wrapper.
  */
 export function normalizeServiceDetail(payload) {

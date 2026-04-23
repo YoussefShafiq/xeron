@@ -1,7 +1,6 @@
 'use client';
 
 import { notFound, useParams } from 'next/navigation';
-import { BASE_URL } from '@/lib/constants';
 import { normalizeServiceDetail } from '@/lib/serviceApi';
 import Badge from '@/components/ui/Badge';
 import Button from '@/components/ui/Button';
@@ -24,7 +23,7 @@ export default function ServiceDetailPage() {
         setLoading(true);
         setService(null);
 
-        fetch(`${BASE_URL}/service/${encodeURIComponent(slug)}`)
+        fetch(`/api/service/${encodeURIComponent(slug)}`)
             .then((response) => {
                 if (response.status === 404) return null;
                 if (!response.ok) throw new Error(`HTTP ${response.status}`);
