@@ -29,4 +29,5 @@ export const NAV_LINKS = [
 export const BASE_URL =
     process.env.NEXT_PUBLIC_API_BASE_URL ||
     process.env.API_BASE_URL ||
-    'https://xeronapi.xeron.tech';
+    // 'https://xeronapi.xeron.tech';
+    'http://localhost:3300';
